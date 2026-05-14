@@ -13,6 +13,7 @@ public class SimulationPanel extends JPanel {
     // ROBOT TRAILS
     // =====================================
     ArrayList<Point>[] trails;
+    Color[] robotColors;
 
     public SimulationPanel(
             Robot[] robots,
@@ -33,9 +34,20 @@ public class SimulationPanel extends JPanel {
         // =====================================
         trails = new ArrayList[robots.length];
 
+        robotColors = new Color[robots.length];
+
         for (int i = 0; i < robots.length; i++) {
 
             trails[i] = new ArrayList<>();
+
+            float hue =
+                    0.1f + (0.8f * i / robots.length);
+
+            robotColors[i] = Color.getHSBColor(
+                    hue,
+                    0.8f,
+                    0.9f
+            );
         }
     }
 
@@ -116,12 +128,7 @@ public class SimulationPanel extends JPanel {
 // =====================================
         for (int i = 0; i < robots.length; i++) {
 
-            if (i == 0) {
-                g2.setColor(new Color(0, 120, 255));
-            }
-            else {
-                g2.setColor(new Color(255, 140, 0));
-            }
+            g2.setColor(robotColors[i]);
 
             int sx = (int)(robots[i].startX * scale);
             int sy = (int)(robots[i].startY * scale);
@@ -148,12 +155,7 @@ public class SimulationPanel extends JPanel {
         // =====================================
         for (int i = 0; i < robots.length; i++) {
 
-            if (i == 0) {
-                g2.setColor(new Color(0, 180, 0));
-            }
-            else {
-                g2.setColor(new Color(180, 0, 180));
-            }
+            g2.setColor(robotColors[i]);
 
             int goalSize = 14;
 
@@ -195,12 +197,7 @@ public class SimulationPanel extends JPanel {
         // =====================================
         for (int i = 0; i < robots.length; i++) {
 
-            if (i == 0) {
-                g2.setColor(new Color(100, 149, 237));
-            }
-            else {
-                g2.setColor(new Color(255, 140, 0));
-            }
+            g2.setColor(robotColors[i]);
 
             for (Point p : trails[i]) {
 
@@ -218,12 +215,7 @@ public class SimulationPanel extends JPanel {
         // =====================================
         for (int i = 0; i < robots.length; i++) {
 
-            if (i == 0) {
-                g2.setColor(new Color(30, 144, 255));
-            }
-            else {
-                g2.setColor(new Color(255, 140, 0));
-            }
+            g2.setColor(robotColors[i]);
 
             int diameter =
                     (int)(robots[i].radius * 2 * scale);
