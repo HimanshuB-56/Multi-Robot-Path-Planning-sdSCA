@@ -35,7 +35,7 @@ public class TestingMultiRobots {
         Robot[] robots = {robot1, robot2,robot3};
 
         
-        // Create Obstacles Robot
+        // Create Obstacles Objects
         Obstacle[] obstacles = {
                 new Obstacle(50, 50, 10),
                 new Obstacle(30, 30, 5),
